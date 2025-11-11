@@ -10,8 +10,8 @@
     <header class="header">
       <div class="container nav">
         <div class="logo">Peeyashwebs Fashion</div>
-        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
-          ☰
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          &#9776;
         </button>
         <nav>
           <div class="nav-links" id="navLinks">
@@ -24,6 +24,7 @@
         </nav>
       </div>
     </header>
+
     <main class="container">
       <section class="hero">
         <div class="left">
@@ -357,15 +358,21 @@
             openWhatsApp("Hi, I want a consultation — " + name);
           });
       });
-    </script>
-    <script>
-      const menuToggle = document.getElementById("menuToggle");
-      const navLinks = document.getElementById("navLinks");
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
 
-      menuToggle.addEventListener("click", () => {
-        navLinks.classList.toggle("show");
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("show");
+        });
+
+        // Close menu when a link is clicked (optional)
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("show");
+          });
+        });
       });
     </script>
   </body>
 </html>
-
