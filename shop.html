@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Shop — Peeyashwebs Fashion</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Cart badge styles */
+      #cartBtn {
+        position: fixed;
+        bottom: 70px;
+        right: 20px;
+        background: #ff69b4;
+        color: white;
+        border: none;
+        border-radius: 50%;
+        width: 60px;
+        height: 60px;
+        font-size: 14px;
+        cursor: pointer;
+      }
+      #cartBtn::after {
+        content: attr(data-count);
+        position: absolute;
+        top: -10px;
+        right: -5px;
+        background: #fff;
+        color: #ff69b4;
+        width: 20px;
+        height: 20px;
+        font-size: 12px;
+        border-radius: 50%;
+        text-align: center;
+        line-height: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="logo">Peeyashwebs Fashion</div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Shop</h1>
+      <p class="kv">
+        Browse our ready-to-wear pieces. Click "View" to see design details or
+        "Add" to save to cart.
+      </p>
+      <div id="productsGrid" class="card-grid" style="margin-top: 12px"></div>
+    </main>
+
+    <button id="cartBtn" class="cart-btn" onclick="openCart()" data-count="0">
+      🛒
+    </button>
+    <a
+      class="whatsapp-btn"
+      href="#"
+      onclick="openWhatsApp('Hi, I want to know more about your collection')"
+      >WhatsApp</a
+    >
+
+    <script>
+      const PRODUCTS = [
+        {
+          id: 1,
+          title: "Luxe Wrap Dress",
+          price: 12000,
+          thumb: "images/Luxe Wrap Dress.jpg",
+          desc: "Elegant wrap dress — perfect for events.",
+        },
+        {
+          id: 2,
+          title: "Everyday Blouse",
+          price: 4500,
+          thumb: "images/Everyday Blouse.jpg",
+          desc: "Comfortable, breathable blouse for daily wear.",
+        },
+        {
+          id: 3,
+          title: "Ankara Maxi",
+          price: 18000,
+          thumb: "images/Ankara Maxi.jpg",
+          desc: "Handmade Ankara maxi with unique prints.",
+        },
+        {
+          id: 4,
+          title: "Chic Jumpsuit",
+          price: 15000,
+          thumb: "images/Chic jumpsuit.jpg",
+          desc: "Modern jumpsuit for smart-casual looks.",
+        },
+        {
+          id: 5,
+          title: "Silk Evening Gown",
+          price: 25000,
+          thumb: "images/Silk Evening Gown.jpg",
+          desc: "Flowing silk gown ideal for special occasions.",
+        },
+        {
+          id: 6,
+          title: "Casual Denim Skirt",
+          price: 7000,
+          thumb: "images/skirt.jpg",
+          desc: "Trendy denim skirt for daily outings.",
+        },
+        {
+          id: 7,
+          title: "Pleated Summer Dress",
+          price: 13000,
+          thumb: "images/Pleated Summer Dress.jpg",
+          desc: "Light and airy dress for summer events.",
+        },
+        {
+          id: 8,
+          title: "Statement Blazer",
+          price: 16000,
+          thumb: "images/Statement Blazer.jpg",
+          desc: "Bold blazer to elevate any outfit.",
+        },
+      ];
+
+      // --- Cart Functions ---
+      function getCart() {
+        const c = localStorage.getItem("peeyash_cart");
+        return c ? JSON.parse(c) : [];
+      }
+
+      function saveCart(cart) {
+        localStorage.setItem("peeyash_cart", JSON.stringify(cart));
+        updateCartBadge();
+      }
+
+      function addToCart(id) {
+        const p = PRODUCTS.find((x) => x.id === id);
+        if (!p) return;
+
+        const cart = getCart();
+        const item = cart.find((i) => i.id === id);
+        if (item) item.qty++;
+        else cart.push({ id: p.id, title: p.title, price: p.price, qty: 1 });
+
+        saveCart(cart);
+        alert(`${p.title} added to cart`);
+      }
+
+      function updateCartBadge() {
+        const btn = document.getElementById("cartBtn");
+        if (!btn) return;
+        const cart = getCart();
+        const total = cart.reduce((s, i) => s + i.qty, 0);
+        btn.setAttribute("data-count", total);
+      }
+
+      // --- Modal Functions ---
+      function viewDesign(id) {
+        const p = PRODUCTS.find((x) => x.id === id);
+        if (!p) return;
+
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+        <div class="modal-card">
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <h3>${p.title}</h3>
+            <button class="modal-close" onclick="closeModal()">✕</button>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 340px;gap:16px;margin-top:12px">
+            <div>
+              <img src="${
+                p.thumb
+              }" style="width:100%;height:420px;object-fit:cover;border-radius:10px">
+            </div>
+            <aside>
+              <p class="kv">${p.desc}</p>
+              <div style="margin-top:12px"><strong>Price: ₦${p.price.toLocaleString()}</strong></div>
+              <div style="margin-top:12px;display:flex;gap:8px">
+                <button class="btn" onclick="addToCart(${
+                  p.id
+                });closeModal()">Add to Cart</button>
+                <button class="btn btn-alt" onclick="openWhatsApp('Hi, I want to order: ${
+                  p.title
+                } — ₦${p.price.toLocaleString()}')">Buy via WhatsApp</button>
+              </div>
+            </aside>
+          </div>
+        </div>
+      `;
+        document.body.appendChild(modal);
+      }
+
+      function closeModal() {
+        const m = document.querySelector(".modal");
+        if (m) document.body.removeChild(m);
+      }
+
+      // --- Render Products ---
+      function renderProducts() {
+        const grid = document.querySelector("#productsGrid");
+        if (!grid) return;
+        grid.innerHTML = "";
+        PRODUCTS.forEach((p) => {
+          const el = document.createElement("div");
+          el.className = "card product";
+          el.innerHTML = `
+          <img src="${p.thumb}" alt="${p.title}">
+          <h4>${p.title}</h4>
+          <div class="kv">₦${p.price.toLocaleString()}</div>
+          <div class="product-meta">
+            <button class="btn" onclick="viewDesign(${p.id})">View</button>
+            <button class="btn btn-alt" onclick="addToCart(${
+              p.id
+            })">Add</button>
+          </div>
+        `;
+          grid.appendChild(el);
+        });
+      }
+
+      // --- Cart Functions (localStorage) ---
+
+      function getCart() {
+        const c = localStorage.getItem("peeyash_cart");
+        return c ? JSON.parse(c) : [];
+      }
+
+      function saveCart(cart) {
+        localStorage.setItem("peeyash_cart", JSON.stringify(cart));
+        updateCartBadge();
+      }
+
+      function addToCart(id) {
+        const p = PRODUCTS.find((x) => x.id === id);
+        if (!p) return;
+
+        const cart = getCart();
+        const item = cart.find((i) => i.id === id);
+        if (item) item.qty++;
+        else cart.push({ id: p.id, title: p.title, price: p.price, qty: 1 });
+
+        saveCart(cart);
+        alert(`${p.title} added to cart`);
+      }
+
+      function updateCartBadge() {
+        const btn = document.getElementById("cartBtn");
+        if (!btn) return;
+        const cart = getCart();
+        const total = cart.reduce((s, i) => s + i.qty, 0);
+        btn.setAttribute("data-count", total);
+      }
+
+      function openCart() {
+        const cart = getCart();
+        let html = "<h3>Your cart</h3>";
+
+        if (cart.length === 0) {
+          html += '<p class="kv">Cart is empty.</p>';
+        } else {
+          html += '<div style="display:flex;flex-direction:column;gap:8px">';
+          cart.forEach((i) => {
+            html += `<div style="display:flex;justify-content:space-between"><div>${
+              i.title
+            } x${i.qty}</div><div>₦${(
+              i.price * i.qty
+            ).toLocaleString()}</div></div>`;
+          });
+          const sum = cart.reduce((s, i) => s + i.price * i.qty, 0);
+          html += `<hr><div style="display:flex;justify-content:space-between"><strong>Total</strong><strong>₦${sum.toLocaleString()}</strong></div>`;
+          html += `<div style="margin-top:12px;display:flex;gap:8px"><button class="btn" onclick="checkout()">Checkout via WhatsApp</button><button class="btn btn-alt" onclick="clearCart()">Clear</button></div>`;
+          html += "</div>";
+        }
+
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="flex:1">${html}</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+    </div>
+  `;
+        document.body.appendChild(modal);
+      }
+
+      function clearCart() {
+        localStorage.removeItem("peeyash_cart");
+        updateCartBadge();
+        alert("Cart cleared");
+        closeModal();
+      }
+
+      function checkout() {
+        const cart = getCart();
+        if (cart.length === 0) {
+          alert("Cart empty");
+          return;
+        }
+
+        const sum = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        let msg = "Order from Peeyashwebs Fashion:\n";
+        cart.forEach(
+          (i) =>
+            (msg += `${i.title} x${i.qty} — ₦${(
+              i.price * i.qty
+            ).toLocaleString()}\n`)
+        );
+        msg += `Total: ₦${sum.toLocaleString()}\nPlease provide delivery address and preferred delivery time.`;
+        openWhatsApp(msg);
+      }
+
+      // --- WhatsApp ---
+      function openWhatsApp(msg) {
+        const number = "+2348000000000"; // Replace with your number
+        const url = `https://wa.me/${number.replace(
+          /[^0-9]/g,
+          ""
+        )}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      }
+
+      // --- Initialize ---
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProducts();
+        updateCartBadge(); // Show cart count on load
+      });
+    </script>
+  </body>
+</html>

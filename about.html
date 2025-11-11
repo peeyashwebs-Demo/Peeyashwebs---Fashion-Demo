@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>About — Peeyashwebs Fashion</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="logo">Peeyashwebs Fashion</div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>About Us</h1>
+      <p class="kv">
+        Welcome to Peeyashwebs Fashion — where style meets elegance. We
+        specialize in high-quality women’s ready-to-wear clothing, blending
+        modern trends with timeless fashion pieces.
+      </p>
+
+      <!-- About Section 1 -->
+      <section class="about-section" style="margin-top: 20px">
+        <div class="card">
+          <h3>Our Mission</h3>
+          <p class="kv">
+            Our mission is to empower women to feel confident and stylish
+            through versatile, high-quality fashion. We focus on creating pieces
+            that suit every occasion, from casual outings to special events.
+          </p>
+        </div>
+      </section>
+
+      <!-- About Section 2 -->
+      <section class="about-section" style="margin-top: 20px">
+        <div class="card">
+          <h3>Our Vision</h3>
+          <p class="kv">
+            To become a leading fashion brand in Nigeria and beyond, known for
+            quality, style, and customer satisfaction. We aim to set trends and
+            inspire women to express themselves through clothing.
+          </p>
+        </div>
+      </section>
+
+      <!-- About Section 3 -->
+      <section class="about-section" style="margin-top: 20px">
+        <div class="card">
+          <h3>Why Choose Us?</h3>
+          <ul class="kv">
+            <li>Handpicked fabrics for comfort and style.</li>
+            <li>Unique designs that stand out.</li>
+            <li>Affordable fashion without compromising quality.</li>
+            <li>Fast and reliable delivery across Nigeria.</li>
+            <li>Excellent customer service and personalized support.</li>
+          </ul>
+        </div>
+      </section>
+
+      <!-- Team Section -->
+      <section class="about-section" style="margin-top: 20px">
+        <div class="card">
+          <h3>Meet Our Team</h3>
+          <p class="kv">
+            Our team is made up of passionate designers, tailors, and fashion
+            enthusiasts dedicated to delivering the best products to our
+            customers. Each piece is crafted with care, creativity, and
+            attention to detail.
+          </p>
+        </div>
+      </section>
+
+      <!-- Call to Action -->
+      <section
+        class="about-section"
+        style="margin-top: 20px; text-align: center"
+      >
+        <div class="card">
+          <h3>Discover Our Collection</h3>
+          <p class="kv">
+            Browse our ready-to-wear collection and find the perfect outfit for
+            every occasion. Quality, style, and elegance — all in one place.
+          </p>
+          <a href="shop.html" class="btn" style="margin-top: 12px">Shop Now</a>
+        </div>
+      </section>
+    </main>
+
+    <a
+      class="whatsapp-btn"
+      href="#"
+      onclick="openWhatsApp('Hi, I want to know more about Peeyashwebs Fashion')"
+      >WhatsApp</a
+    >
+
+    <script>
+      function openWhatsApp(msg) {
+        const number = "+2348000000000"; // Replace with your real number
+        const url = `https://wa.me/${number.replace(
+          /[^0-9]/g,
+          ""
+        )}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      }
+    </script>
+  </body>
+</html>

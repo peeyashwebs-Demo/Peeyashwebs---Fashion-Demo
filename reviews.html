@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Reviews — Peeyashwebs Fashion</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="logo">Peeyashwebs Fashion</div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a><a href="shop.html">Shop</a
+            ><a href="about.html">About</a><a href="reviews.html">Reviews</a
+            ><a href="contact.html">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <h1>Customer Reviews</h1>
+      <div
+        style="display: flex; align-items: center; gap: 14px; margin-top: 10px"
+      >
+        <div style="font-size: 28px; font-weight: 800">12,345</div>
+        <div class="kv">
+          reviews and counting — trusted by thousands in Lagos
+        </div>
+      </div>
+      <section style="margin-top: 12px">
+        <div id="reviewsGrid" class="review-grid"></div>
+      </section>
+      <section style="margin-top: 18px">
+        <h3>Leave a review</h3>
+        <form id="reviewForm">
+          <div class="form-group">
+            <input id="rvName" class="input" placeholder="Your name" required />
+          </div>
+          <div class="form-group">
+            <textarea
+              id="rvText"
+              class="input"
+              placeholder="Your review"
+              required
+            ></textarea>
+          </div>
+          <div class="form-group">
+            <button class="btn" type="submit">Submit</button>
+          </div>
+        </form>
+      </section>
+    </main>
+    <footer class="container footer"><div>© Peeyashwebs Fashion</div></footer>
+    <script src="assets/script.js"></script>
+  </body>
+</html>

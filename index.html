@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Peeyashwebs Fashion — Ready-to-wear</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="logo">Peeyashwebs Fashion</div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+    <main class="container">
+      <section class="hero">
+        <div class="left">
+          <span class="badge">New Collection</span>
+          <h1>Timeless styles for modern women</h1>
+          <p class="kv">
+            Shop curated ready-to-wear pieces — built for comfort and
+            confidence. Order via WhatsApp or add to your cart and checkout
+            easily.
+          </p>
+          <a class="btn" href="shop.html">Shop Now</a>
+        </div>
+        <div class="right">
+          <div class="card">
+            <h3>Why choose Peeyashwebs</h3>
+            <p class="kv">
+              Quality fabrics, precise tailoring, and fast Lagos delivery. We
+              tailor to your measurements on request.
+            </p>
+            <div style="margin-top: 10px">
+              <a class="btn btn-alt" href="contact.html">Get Measurements</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section style="margin-top: 18px">
+        <h2>Featured</h2>
+        <div id="productsGrid" class="card-grid">
+          <!-- Products injected by script -->
+        </div>
+      </section>
+
+      <section style="margin-top: 18px">
+        <h3>How it works</h3>
+        <div style="display: flex; gap: 12px; margin-top: 10px">
+          <div class="card">
+            <strong>1.</strong>
+            <div class="kv">Choose a design and size.</div>
+          </div>
+          <div class="card">
+            <strong>2.</strong>
+            <div class="kv">Add to cart or order via WhatsApp.</div>
+          </div>
+          <div class="card">
+            <strong>3.</strong>
+            <div class="kv">We confirm measurements and deliver.</div>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <button id="cartBtn" class="cart-btn" onclick="openCart()" data-count="0">
+      Cart
+    </button>
+    <a
+      class="whatsapp-btn"
+      href="#"
+      onclick="openWhatsApp('Hi, I want to know more about your collection')"
+      >WhatsApp</a
+    >
+
+    <footer class="container footer">
+      <div
+        style="
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          gap: 12px;
+        "
+      >
+        <div>© Peeyashwebs Fashion</div>
+        <div class="kv">Lagos — Made with care</div>
+      </div>
+    </footer>
+
+    <script src="assets/script.js"></script>
+    <script>
+      // WhatsApp configuration
+      const WHATSAPP_NUMBER = "+2348000000000"; // replace with your real number (with country code)
+
+      // Open WhatsApp chat with a prefilled message
+      function openWhatsApp(message) {
+        const base = "https://wa.me/" + WHATSAPP_NUMBER.replace(/[^0-9]/g, "");
+        const url = base + "?text=" + encodeURIComponent(message);
+        window.open(url, "_blank");
+      }
+
+      // Quick product data (replace with real data or fetch from API)
+      const PRODUCTS = [
+        {
+          id: 1,
+          title: "Luxe Wrap Dress",
+          price: 12000,
+          thumb: "images/Luxe Wrap Dress.jpg",
+          desc: "Elegant wrap dress — perfect for events.",
+        },
+        {
+          id: 2,
+          title: "Everyday Blouse",
+          price: 4500,
+          thumb: "images/Everyday Blouse.jpg",
+          desc: "Comfortable, breathable blouse for daily wear.",
+        },
+        {
+          id: 3,
+          title: "Ankara Maxi",
+          price: 18000,
+          thumb: "images/Ankara Maxi.jpg",
+          desc: "Handmade Ankara maxi with unique prints.",
+        },
+        {
+          id: 4,
+          title: "Chic Jumpsuit",
+          price: 15000,
+          thumb: "images/Chic jumpsuit.jpg",
+          desc: "Modern jumpsuit for smart-casual looks.",
+        },
+      ];
+
+      // Render products on shop page
+      function renderProducts() {
+        const grid = document.querySelector("#productsGrid");
+        if (!grid) return;
+        grid.innerHTML = "";
+        PRODUCTS.forEach((p) => {
+          const el = document.createElement("div");
+          el.className = "card product";
+          el.innerHTML = `
+      <img src="${p.thumb}" alt="${p.title}">
+      <h4>${p.title}</h4>
+      <div class="kv">₦${p.price.toLocaleString()}</div>
+      <div class="product-meta">
+        <button class="btn" onclick="viewDesign(${p.id})">View</button>
+        <button class="btn btn-alt" onclick="addToCart(${p.id})">Add</button>
+      </div>
+    `;
+          grid.appendChild(el);
+        });
+      }
+
+      // View single design in modal
+      function viewDesign(id) {
+        const p = PRODUCTS.find((x) => x.id === id);
+        if (!p) return;
+
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <h3>${p.title}</h3>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 340px;gap:16px;margin-top:12px">
+        <div>
+          <img src="${
+            p.thumb
+          }" style="width:100%;height:420px;object-fit:cover;border-radius:10px">
+        </div>
+        <aside>
+          <p class="kv">${p.desc}</p>
+          <div style="margin-top:12px"><strong>Price: ₦${p.price.toLocaleString()}</strong></div>
+          <div style="margin-top:12px;display:flex;gap:8px">
+            <button class="btn" onclick="addToCart(${
+              p.id
+            });closeModal()">Add to Cart</button>
+            <button class="btn btn-alt" onclick="openWhatsApp('Hi, I want to order: ${
+              p.title
+            } — ₦${p.price.toLocaleString()}')">Buy via WhatsApp</button>
+          </div>
+        </aside>
+      </div>
+    </div>
+  `;
+        document.body.appendChild(modal);
+      }
+
+      // Close any open modal safely
+      function closeModal() {
+        const m = document.querySelector(".modal");
+        if (m) document.body.removeChild(m);
+      }
+
+      // --- Cart Functions (localStorage) ---
+
+      function getCart() {
+        const c = localStorage.getItem("peeyash_cart");
+        return c ? JSON.parse(c) : [];
+      }
+
+      function saveCart(cart) {
+        localStorage.setItem("peeyash_cart", JSON.stringify(cart));
+        updateCartBadge();
+      }
+
+      function addToCart(id) {
+        const p = PRODUCTS.find((x) => x.id === id);
+        if (!p) return;
+
+        const cart = getCart();
+        const item = cart.find((i) => i.id === id);
+        if (item) item.qty++;
+        else cart.push({ id: p.id, title: p.title, price: p.price, qty: 1 });
+
+        saveCart(cart);
+        alert(`${p.title} added to cart`);
+      }
+
+      function updateCartBadge() {
+        const btn = document.getElementById("cartBtn");
+        if (!btn) return;
+        const cart = getCart();
+        const total = cart.reduce((s, i) => s + i.qty, 0);
+        btn.setAttribute("data-count", total);
+      }
+
+      function openCart() {
+        const cart = getCart();
+        let html = "<h3>Your cart</h3>";
+
+        if (cart.length === 0) {
+          html += '<p class="kv">Cart is empty.</p>';
+        } else {
+          html += '<div style="display:flex;flex-direction:column;gap:8px">';
+          cart.forEach((i) => {
+            html += `<div style="display:flex;justify-content:space-between"><div>${
+              i.title
+            } x${i.qty}</div><div>₦${(
+              i.price * i.qty
+            ).toLocaleString()}</div></div>`;
+          });
+          const sum = cart.reduce((s, i) => s + i.price * i.qty, 0);
+          html += `<hr><div style="display:flex;justify-content:space-between"><strong>Total</strong><strong>₦${sum.toLocaleString()}</strong></div>`;
+          html += `<div style="margin-top:12px;display:flex;gap:8px"><button class="btn" onclick="checkout()">Checkout via WhatsApp</button><button class="btn btn-alt" onclick="clearCart()">Clear</button></div>`;
+          html += "</div>";
+        }
+
+        const modal = document.createElement("div");
+        modal.className = "modal";
+        modal.innerHTML = `
+    <div class="modal-card">
+      <div style="display:flex;justify-content:space-between;align-items:center">
+        <div style="flex:1">${html}</div>
+        <button class="modal-close" onclick="closeModal()">✕</button>
+      </div>
+    </div>
+  `;
+        document.body.appendChild(modal);
+      }
+
+      function clearCart() {
+        localStorage.removeItem("peeyash_cart");
+        updateCartBadge();
+        alert("Cart cleared");
+        closeModal();
+      }
+
+      function checkout() {
+        const cart = getCart();
+        if (cart.length === 0) {
+          alert("Cart empty");
+          return;
+        }
+
+        const sum = cart.reduce((s, i) => s + i.price * i.qty, 0);
+        let msg = "Order from Peeyashwebs Fashion:\n";
+        cart.forEach(
+          (i) =>
+            (msg += `${i.title} x${i.qty} — ₦${(
+              i.price * i.qty
+            ).toLocaleString()}\n`)
+        );
+        msg += `Total: ₦${sum.toLocaleString()}\nPlease provide delivery address and preferred delivery time.`;
+        openWhatsApp(msg);
+      }
+
+      // --- Reviews (Demo) ---
+      const SAMPLE_REVIEWS = [
+        { name: "Ada", text: "Loved the Ankara maxi! Tailoring was perfect." },
+        {
+          name: "Ngozi",
+          text: "Fast delivery and the fabric quality is top notch.",
+        },
+        {
+          name: "Blessing",
+          text: "Great customer service and fitting options.",
+        },
+      ];
+
+      function renderReviews() {
+        const el = document.getElementById("reviewsGrid");
+        if (!el) return;
+        el.innerHTML = "";
+        SAMPLE_REVIEWS.forEach((r) => {
+          const c = document.createElement("div");
+          c.className = "card";
+          c.innerHTML = `<strong>${r.name}</strong><p class="kv">${r.text}</p>`;
+          el.appendChild(c);
+        });
+      }
+
+      function submitReview(e) {
+        e.preventDefault();
+        const name = document.getElementById("rvName").value.trim();
+        const text = document.getElementById("rvText").value.trim();
+        if (!name || !text) {
+          alert("Fill both fields");
+          return;
+        }
+        SAMPLE_REVIEWS.unshift({ name, text });
+        renderReviews();
+        e.target.reset();
+        alert("Thanks — review submitted (demo only)");
+      }
+
+      // --- Initialization ---
+      document.addEventListener("DOMContentLoaded", () => {
+        renderProducts();
+        renderReviews();
+        updateCartBadge();
+
+        const frm = document.getElementById("reviewForm");
+        if (frm) frm.addEventListener("submit", submitReview);
+
+        const contact = document.getElementById("contactForm");
+        if (contact)
+          contact.addEventListener("submit", function (e) {
+            e.preventDefault();
+            const name = document.getElementById("contactName").value || "";
+            openWhatsApp("Hi, I want a consultation — " + name);
+          });
+      });
+    </script>
+  </body>
+</html>

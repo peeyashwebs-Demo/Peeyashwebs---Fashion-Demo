@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Contact — Peeyashwebs Fashion</title>
+    <link rel="stylesheet" href="styles.css" />
+    <style>
+      /* Optional: Map styling */
+      .map-container {
+        width: 100%;
+        height: 400px;
+        margin-top: 20px;
+        border-radius: 10px;
+        overflow: hidden;
+      }
+      .contact-card {
+        padding: 20px;
+        border-radius: 10px;
+        background-color: #fff;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin-top: 20px;
+      }
+      .contact-card input,
+      .contact-card textarea {
+        width: 100%;
+        padding: 10px;
+        margin: 8px 0;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+      }
+      .contact-card button {
+        background-color: #ff69b4;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+      }
+      .contact-card button:hover {
+        background-color: #ff85c1;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="header">
+      <div class="container nav">
+        <div class="logo">Peeyashwebs Fashion</div>
+        <nav>
+          <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="shop.html">Shop</a>
+            <a href="about.html">About</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="contact.html">Contact</a>
+          </div>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+      <h1>Contact Us</h1>
+      <p class="kv">
+        We'd love to hear from you! Reach out for inquiries, orders, or general
+        questions. Use the form below or contact us directly via WhatsApp.
+      </p>
+
+      <!-- Contact Form Card -->
+      <section class="contact-card">
+        <form id="contactForm">
+          <input
+            type="text"
+            id="contactName"
+            placeholder="Your Name"
+            required
+          />
+          <input
+            type="email"
+            id="contactEmail"
+            placeholder="Your Email"
+            required
+          />
+          <textarea
+            id="contactMessage"
+            rows="5"
+            placeholder="Your Message"
+            required
+          ></textarea>
+          <button type="submit">Send Message</button>
+        </form>
+      </section>
+
+      <!-- Map Section -->
+      <section class="map-container">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3960.123456789!2d3.3792!3d6.5244!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103bf0f!2sLagos!5e0!3m2!1sen!2sng!4v1699999999999!5m2!1sen!2sng"
+          width="100%"
+          height="100%"
+          style="border: 0"
+          allowfullscreen=""
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+        >
+        </iframe>
+      </section>
+    </main>
+
+    <a
+      class="whatsapp-btn"
+      href="#"
+      onclick="openWhatsApp('Hi, I want to contact Peeyashwebs Fashion')"
+      >WhatsApp</a
+    >
+
+    <script>
+      function openWhatsApp(msg) {
+        const number = "+2348000000000"; // Replace with your real number
+        const url = `https://wa.me/${number.replace(
+          /[^0-9]/g,
+          ""
+        )}?text=${encodeURIComponent(msg)}`;
+        window.open(url, "_blank");
+      }
+
+      const contactForm = document.getElementById("contactForm");
+      contactForm.addEventListener("submit", function (e) {
+        e.preventDefault();
+        const name = document.getElementById("contactName").value.trim();
+        const email = document.getElementById("contactEmail").value.trim();
+        const message = document.getElementById("contactMessage").value.trim();
+        if (!name || !email || !message) {
+          alert("Please fill all fields");
+          return;
+        }
+        openWhatsApp(
+          `Hi, I want a consultation — Name: ${name}, Email: ${email}, Message: ${message}`
+        );
+        contactForm.reset();
+      });
+    </script>
+  </body>
+</html>
