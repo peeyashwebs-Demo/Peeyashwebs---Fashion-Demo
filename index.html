@@ -10,8 +10,11 @@
     <header class="header">
       <div class="container nav">
         <div class="logo">Peeyashwebs Fashion</div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          ☰
+        </button>
         <nav>
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="shop.html">Shop</a>
             <a href="about.html">About</a>
@@ -353,6 +356,14 @@
             const name = document.getElementById("contactName").value || "";
             openWhatsApp("Hi, I want a consultation — " + name);
           });
+      });
+    </script>
+    <script>
+      const menuToggle = document.getElementById("menuToggle");
+      const navLinks = document.getElementById("navLinks");
+
+      menuToggle.addEventListener("click", () => {
+        navLinks.classList.toggle("show");
       });
     </script>
   </body>
