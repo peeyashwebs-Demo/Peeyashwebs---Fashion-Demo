@@ -308,9 +308,9 @@ textarea {
 }
 
 .nav-links a.active {
-  color: #e91e63; /* or your brand color */
+  color: #55021e; /* or your brand color */
   font-weight: 600;
-  border-bottom: 2px solid #e91e63;
+  border-bottom: 2px solid #55021e;
 }
 
 .footer {
