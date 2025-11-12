@@ -46,8 +46,11 @@
     <header class="header">
       <div class="container nav">
         <div class="logo">Peeyashwebs Fashion</div>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          &#9776;
+        </button>
         <nav>
-          <div class="nav-links">
+          <div class="nav-links" id="navLinks">
             <a href="index.html">Home</a>
             <a href="shop.html">Shop</a>
             <a href="about.html">About</a>
@@ -105,13 +108,49 @@
       </section>
     </main>
 
-    <a
-      class="whatsapp-btn"
-      href="#"
-      onclick="openWhatsApp('Hi, I want to contact Peeyashwebs Fashion')"
-      >WhatsApp</a
-    >
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-col">
+          <h3>Peeyashwebs Fashion</h3>
+          <p>
+            Elevating women’s style with premium ready-to-wear and custom
+            designs. Confidence, class, and creativity — all in one look.
+          </p>
+        </div>
 
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <p>
+            Email:
+            <a href="mailto:info@peeyashwebs.com">info@peeyashwebs.com</a>
+          </p>
+          <p>Phone: <a href="tel:+2348012345678">+234 801 234 5678</a></p>
+          <a
+            href="#"
+            class="whatsapp-btn"
+            onclick="openWhatsApp('Hi, I’d like to know more about your fashion collections!')"
+            >Chat on WhatsApp</a
+          >
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © <span id="year"></span> Peeyashwebs Fashion. All Rights Reserved.
+        </p>
+      </div>
+    </footer>
     <script>
       function openWhatsApp(msg) {
         const number = "+2348000000000"; // Replace with your real number
@@ -136,6 +175,23 @@
           `Hi, I want a consultation — Name: ${name}, Email: ${email}, Message: ${message}`
         );
         contactForm.reset();
+      });
+    </script>
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        const menuToggle = document.getElementById("menuToggle");
+        const navLinks = document.getElementById("navLinks");
+
+        menuToggle.addEventListener("click", () => {
+          navLinks.classList.toggle("show");
+        });
+
+        // Close menu when a link is clicked (optional)
+        document.querySelectorAll(".nav-links a").forEach((link) => {
+          link.addEventListener("click", () => {
+            navLinks.classList.remove("show");
+          });
+        });
       });
     </script>
   </body>

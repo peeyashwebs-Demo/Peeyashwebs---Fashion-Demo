@@ -77,31 +77,64 @@
       </section>
     </main>
 
-    <button id="cartBtn" class="cart-btn" onclick="openCart()" data-count="0">
-      Cart
-    </button>
-    <a
-      class="whatsapp-btn"
-      href="#"
-      onclick="openWhatsApp('Hi, I want to know more about your collection')"
-      >WhatsApp</a
-    >
+    <footer class="footer">
+      <div class="container footer-content">
+        <div class="footer-col">
+          <h3>Peeyashwebs Fashion</h3>
+          <p>
+            Elevating women’s style with premium ready-to-wear and custom
+            designs. Confidence, class, and creativity — all in one look.
+          </p>
+        </div>
 
-    <footer class="container footer">
-      <div
-        style="
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          gap: 12px;
-        "
-      >
-        <div>© Peeyashwebs Fashion</div>
-        <div class="kv">Lagos — Made with care</div>
+        <div class="footer-col">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="shop.html">Shop</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h4>Contact Us</h4>
+          <p>
+            Email:
+            <a href="mailto:info@peeyashwebs.com">info@peeyashwebs.com</a>
+          </p>
+          <p>Phone: <a href="tel:+2348012345678">+234 801 234 5678</a></p>
+          <a
+            href="#"
+            class="whatsapp-btn"
+            onclick="openWhatsApp('Hi, I’d like to know more about your fashion collections!')"
+            >Chat on WhatsApp</a
+          >
+
+          <button
+            id="cartBtn"
+            class="cart-btn"
+            onclick="openCart()"
+            data-count="0"
+          >
+            Cart
+          </button>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>
+          © <span id="year"></span> Peeyashwebs Fashion. All Rights Reserved.
+        </p>
       </div>
     </footer>
 
-    <script src="assets/script.js"></script>
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
+    <script src="assets/script.js" defer></script>
     <script>
       // WhatsApp configuration
       const WHATSAPP_NUMBER = "+2348000000000"; // replace with your real number (with country code)
