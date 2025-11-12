@@ -194,5 +194,18 @@
         });
       });
     </script>
+    <script>
+      // Highlight current page link (works in all folders)
+      document.querySelectorAll(".nav-links a").forEach((link) => {
+        const currentPage = window.location.pathname.split("/").pop(); // e.g. 'shop.html'
+        const linkPage = link.getAttribute("href");
+        if (
+          linkPage === currentPage ||
+          (currentPage === "" && linkPage === "index.html")
+        ) {
+          link.classList.add("active");
+        }
+      });
+    </script>
   </body>
 </html>
